@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
-from langchain_ollama import ChatOllama
+from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_ollama import ChatOllama
 
 load_dotenv()
 
@@ -31,8 +31,8 @@ Musk's political activities, views, and statements have made him a polarizing fi
     )
 
     # llm = ChatOllama(temperature=0, model="gemma3:270m")
-    llm = ChatOpenAI(temperature=0, model="gpt-5")
-    chain = summary_prompt_template | llm
+    llm = ChatGoogleGenerativeAI(temperature=0, model="gemini-2.5-pro")
+    chain = summary_prompt_template | llm # runnable interface/object, pipe operator connect output of one to input of another
 
     response = chain.invoke(input={"information": information})
     print(response.content)
